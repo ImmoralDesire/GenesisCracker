@@ -1,11 +1,13 @@
 package me.synterxis.genesis.utils;
 
+import me.synterxis.genesis.Main;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Check {
 
-    public static void notNull(Object... objects) {
+    public static boolean notNull(Object... objects) {
         List<Object> nulls = new ArrayList<>();
 
         for(Object o : objects) {
@@ -14,7 +16,11 @@ public class Check {
             }
         }
 
-        if(!nulls.isEmpty())
-            throw new NullPointerException("One of the following objects are null! " + nulls.toString());
+        if(!nulls.isEmpty()) {
+            Main.logger.error("One of the following objects are null! " + nulls.toString());
+            return false;
+        }
+
+        return true;
     }
 }

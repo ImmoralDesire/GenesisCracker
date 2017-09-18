@@ -1,23 +1,23 @@
 package me.synterxis.genesis;
 
-import me.synterxis.genesis.exception.GotAnswer;
 import me.synterxis.genesis.utils.Files;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
-import java.net.ProtocolException;
 import java.net.Proxy;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.*;
 
 public class Main {
 
-    public List<Thread> threadList = new ArrayList<>();
+    public static Logger logger = LoggerFactory.getLogger( Main.class );
 
     public List<Proxy> proxyList = new ArrayList<>();
     public InputStream proxyFile;
@@ -58,7 +58,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Main main = new Main();
-
+        for(int i = 101; i < 201; i++) {
+            System.out.println("125.141.200." + i + ":80");
+        }
         CompletionService<Void> completionService = new ExecutorCompletionService<Void>( main.service );
         List<Future<Void>> results = new ArrayList<Future<Void>>();
 
@@ -97,6 +99,8 @@ public class Main {
                         System.out.println("The password is: " + genesisCracker.getPassword());
                     }
 
+
+                    //genesisCracker.cancel();
                     return null;
                 }
             }

